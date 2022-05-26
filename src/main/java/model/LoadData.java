@@ -16,8 +16,8 @@ public class LoadData {
 
 		try {
 			BufferedImage img = ImageIO.read(new File("minesweeper.png"));
-
-			listImage.put("title", img.getSubimage(0, 84, 114, 25));
+			BufferedImage icon = ImageIO.read(new File("icon.png"));
+			listImage.put("icon", icon.getSubimage(0,0, 900,900));
 			listImage.put("noUse", img.getSubimage(0, 39, 16, 16));
 			listImage.put("co", img.getSubimage(16, 39, 16, 16));
 			listImage.put("boomRed", img.getSubimage(32, 39, 16, 16));
@@ -47,8 +47,8 @@ public class LoadData {
 			listImage.put("7", img.getSubimage(91, 0, 13, 23));
 			listImage.put("8", img.getSubimage(104, 0, 13, 23));
 			listImage.put("9", img.getSubimage(117, 0, 13, 23));
-			listImage.put("voCung", img.getSubimage(120, 0, 13, 23));
-			listImage.put("tich", img.getSubimage(140, 49, 7, 7));
+			listImage.put("infinity", img.getSubimage(120, 0, 13, 23));
+			listImage.put("tick", img.getSubimage(140, 49, 7, 7));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -19,7 +19,7 @@ public class GameFrame extends JFrame {
 
 	private JMenuBar mnb;
 	private JMenu menu;
-	private JMenuItem basic, nomal, hard, newGame, exit;
+	private JMenuItem Basic, Normal, Hard, newGame, exit;
 
 	public GameFrame(int w, int h, int boom) {
 
@@ -30,21 +30,21 @@ public class GameFrame extends JFrame {
 
 		menu.add(newGame = new JMenuItem("New game"));
 		menu.addSeparator();
-		menu.add(basic = new JMenuItem("Basic"));
-		menu.add(nomal = new JMenuItem("Nomal"));
-		menu.add(hard = new JMenuItem("Hard"));
+		menu.add(Basic = new JMenuItem("Basic"));
+		menu.add(Normal = new JMenuItem("Normal"));
+		menu.add(Hard = new JMenuItem("Hard"));
 		menu.addSeparator();
 		menu.add(exit = new JMenuItem("Exit"));
 
-		if (w == 8) {
-			basic.setIcon(new ImageIcon(loadData.getListImage().get("tich")));
-		} else if (w == 16) {
-			nomal.setIcon(new ImageIcon(loadData.getListImage().get("tich")));
-		} else {
-			hard.setIcon(new ImageIcon(loadData.getListImage().get("tich")));
+		if (h == 8) {
+			Basic.setIcon(new ImageIcon(loadData.getListImage().get("tick")));
+		} else if (h == 16) {
+			Normal.setIcon(new ImageIcon(loadData.getListImage().get("tick")));
+		} else if (h == 30 ) {
+			Hard.setIcon(new ImageIcon(loadData.getListImage().get("tick")));
 		}
 
-		basic.addActionListener(new ActionListener() {
+		Basic.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -53,7 +53,7 @@ public class GameFrame extends JFrame {
 			}
 		});
 
-		nomal.addActionListener(new ActionListener() {
+		Normal.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -62,7 +62,7 @@ public class GameFrame extends JFrame {
 			}
 		});
 
-		hard.addActionListener(new ActionListener() {
+		Hard.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -90,7 +90,7 @@ public class GameFrame extends JFrame {
 
 		add(gamePanel = new GamePanel(w, h, boom, this));
 
-		setIconImage(loadData.getListImage().get("title"));
+		setIconImage(loadData.getListImage().get("icon"));
 		pack();
 		setResizable(false);
 		setLocationRelativeTo(null);

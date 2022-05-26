@@ -238,11 +238,11 @@ public class World {
 		this.lbBoom = lbBoom;
 	}
 
-	public boolean[][] getisPressedArray() {
+	public boolean[][] getIsPressedArray() {
 		return isPressedArray;
 	}
 
-	public void setisPressedArray(boolean[][] isPressedArray) {
+	public void setIsPressedArray(boolean[][] isPressedArray) {
 		this.isPressedArray = isPressedArray;
 	}
 

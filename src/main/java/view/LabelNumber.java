@@ -19,10 +19,10 @@ public class LabelNumber extends JLabel {
 
 	@Override
 	public void paint(Graphics g) {
-		if (number.equals("voCuc")) {
-			g.drawImage(p.getGame().getGameFrame().getLoadData().getListImage().get("voCuc"), 0, 0, 26, 46, null);
-			g.drawImage(p.getGame().getGameFrame().getLoadData().getListImage().get("voCuc"), 26, 0, 26, 46, null);
-			g.drawImage(p.getGame().getGameFrame().getLoadData().getListImage().get("voCuc"), 52, 0, 26, 46, null);
+		if (number.equals("infinity")) {
+			g.drawImage(p.getGame().getGameFrame().getLoadData().getListImage().get("infinity"), 0, 0, 26, 46, null);
+			g.drawImage(p.getGame().getGameFrame().getLoadData().getListImage().get("infinity"), 26, 0, 26, 46, null);
+			g.drawImage(p.getGame().getGameFrame().getLoadData().getListImage().get("infinity"), 52, 0, 26, 46, null);
 		} else {
 			g.drawImage(p.getGame().getGameFrame().getLoadData().getListImage().get(String.valueOf(number.charAt(0))),
 					0, 0, 26, 46, null);
