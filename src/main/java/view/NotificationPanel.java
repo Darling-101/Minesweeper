@@ -44,7 +44,7 @@ public class NotificationPanel extends JPanel {
 
 		p12.add(lbTime = new LabelNumber(this, "000"));
 
-		time = new Timer(0, new ActionListener() {
+		time = new Timer(1000, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				nowTime++;
