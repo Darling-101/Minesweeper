@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="DoMinReal:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/DoMinReal_jar</output-path>
+    <root id="archive" name="DoMinReal.jar">
+      <element id="module-output" name="DoMinReal" />
+    </root>
+  </artifact>
+</component>
