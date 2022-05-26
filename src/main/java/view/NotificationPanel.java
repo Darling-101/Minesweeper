@@ -44,7 +44,7 @@ public class NotificationPanel extends JPanel {
 
 		p12.add(lbTime = new LabelNumber(this, "000"));
 
-		time = new Timer(1000, new ActionListener() {
+		time = new Timer(0, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				nowTime++;
@@ -96,7 +96,7 @@ public class NotificationPanel extends JPanel {
 
 	public void updateLbTime() {
 		if (nowTime > 999) {
-			lbTime.setNumber("voCuc");
+			lbTime.setNumber("infinity");
 		} else {
 			String cTime = String.valueOf(nowTime);
 			if (cTime.length() == 1) {
@@ -106,7 +106,6 @@ public class NotificationPanel extends JPanel {
 			} else {
 				lbTime.setNumber(cTime);
 			}
-
 			lbTime.repaint();
 		}
 	}
