@@ -13,11 +13,6 @@ import model.LoadData;
 
 public class GameFrame extends JFrame {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
 	private LoadData loadData;
 
 	private GamePanel gamePanel;

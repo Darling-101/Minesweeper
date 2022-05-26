@@ -5,18 +5,13 @@ import java.awt.Graphics;
 
 import javax.swing.JLabel;
 
-public class LableNumber extends JLabel {
-
-	/**
-	* 
-	*/
-	private static final long serialVersionUID = 1L;
+public class LabelNumber extends JLabel {
 
 	private NotificationPanel p;
 
 	private String number;
 
-	public LableNumber(NotificationPanel p, String number) {
+	public LabelNumber(NotificationPanel p, String number) {
 		this.p = p;
 		this.number = number;
 		setPreferredSize(new Dimension(78, 46));

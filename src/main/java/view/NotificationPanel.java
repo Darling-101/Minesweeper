@@ -13,18 +13,13 @@ import javax.swing.Timer;
 
 public class NotificationPanel extends JPanel {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
 	private JPanel p11, p12, p13;
 
-	private LableNumber lbTime, lbBoom;
+	private LabelNumber lbTime, lbBoom;
 
 	private GamePanel game;
 
-	private SmileButton bt;
+	private SmileButton smileButton;
 
 	private Timer time;
 	private int nowTime;
@@ -35,7 +30,7 @@ public class NotificationPanel extends JPanel {
 		lbTime = game.getWorld().getLbTime();
 		lbBoom = game.getWorld().getLbBoom();
 
-		bt = game.getWorld().getButtonSmile();
+		smileButton = game.getWorld().getButtonSmile();
 		setLayout(new BorderLayout());
 
 		setBorder(BorderFactory.createLoweredBevelBorder());
@@ -44,10 +39,10 @@ public class NotificationPanel extends JPanel {
 		add(p12 = new JPanel(), BorderLayout.EAST);
 		add(p13 = new JPanel(), BorderLayout.CENTER);
 
-		p11.add(lbBoom = new LableNumber(this, "000"));
+		p11.add(lbBoom = new LabelNumber(this, "000"));
 		updateLbBoom();
 
-		p12.add(lbTime = new LableNumber(this, "000"));
+		p12.add(lbTime = new LabelNumber(this, "000"));
 
 		time = new Timer(1000, new ActionListener() {
 
@@ -58,14 +53,14 @@ public class NotificationPanel extends JPanel {
 			}
 		});
 
-		p13.add(bt = new SmileButton(this));
+		p13.add(smileButton = new SmileButton(this));
 
-		bt.addMouseListener(new MouseListener() {
+		smileButton.addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				bt.setState(SmileButton.now);
-				bt.repaint();
+				smileButton.setState(SmileButton._default);
+				smileButton.repaint();
 
 				int option = JOptionPane.showConfirmDialog(null, "Are you play new game?", "Notification",
 						JOptionPane.YES_NO_OPTION);
@@ -81,8 +76,8 @@ public class NotificationPanel extends JPanel {
 					getGame().getGameFrame().setVisible(false);
 					new GameFrame(game.getW(), game.getH(), game.getBoom());
 				} else {
-					bt.setState(SmileButton.press);
-					bt.repaint();
+					smileButton.setState(SmileButton.press);
+					smileButton.repaint();
 				}
 			}
 
@@ -145,12 +140,12 @@ public class NotificationPanel extends JPanel {
 		this.time = time;
 	}
 
-	public SmileButton getBt() {
-		return bt;
+	public SmileButton getSmileButton() {
+		return smileButton;
 	}
 
-	public void setBt(SmileButton bt) {
-		this.bt = bt;
+	public void setSmileButton(SmileButton bt) {
+		this.smileButton = bt;
 	}
 
 }

@@ -7,11 +7,6 @@ import javax.swing.JPanel;
 
 public class PlayPanel extends JPanel {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
 	private GamePanel game;
 
 	private PlayButton[][] arrayButton;

@@ -6,16 +6,12 @@ import java.awt.Graphics;
 import javax.swing.JButton;
 
 public class SmileButton extends JButton {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	
 	public static final int win = 0;
 	public static final int lose = 1;
 	public static final int press = 2;
 	public static final int wow = 3;
-	public static final int now = 4;
+	public static final int _default = 4;
 
 	private NotificationPanel p;
 
@@ -25,7 +21,7 @@ public class SmileButton extends JButton {
 		this.p = p;
 		setPreferredSize(new Dimension(50, 50));
 
-		state = now;
+		state = _default;
 	}
 
 	@Override
@@ -47,7 +43,7 @@ public class SmileButton extends JButton {
 			g.drawImage(p.getGame().getGameFrame().getLoadData().getListImage().get("smilePressPlay"), 0, 0,
 					getPreferredSize().width, getPreferredSize().height, null);
 			break;
-		case now:
+		case _default:
 			g.drawImage(p.getGame().getGameFrame().getLoadData().getListImage().get("smile"), 0, 0,
 					getPreferredSize().width, getPreferredSize().height, null);
 			break;

@@ -6,12 +6,6 @@ import java.awt.Graphics;
 import javax.swing.JButton;
 
 public class PlayButton extends JButton {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
 	private int number;
 
 	private PlayPanel p;

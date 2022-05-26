@@ -10,11 +10,6 @@ import javax.swing.JPanel;
 import control.World;
 
 public class GamePanel extends JPanel implements MouseListener {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private NotificationPanel p1;
 	private PlayPanel p2;
 
@@ -48,8 +43,8 @@ public class GamePanel extends JPanel implements MouseListener {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		getP1().getBt().setState(SmileButton.wow);
-		getP1().getBt().repaint();
+		getP1().getSmileButton().setState(SmileButton.wow);
+		getP1().getSmileButton().repaint();
 		PlayButton[][] arrayButton = p2.getArrayButton();
 		for (int i = 0; i < arrayButton.length; i++) {
 			for (int j = 0; j < arrayButton[i].length; j++) {
@@ -64,8 +59,8 @@ public class GamePanel extends JPanel implements MouseListener {
 						if (world.isLose()) {
 
 							getP1().getTime().stop();
-							getP1().getBt().setState(SmileButton.lose);
-							getP1().getBt().repaint();
+							getP1().getSmileButton().setState(SmileButton.lose);
+							getP1().getSmileButton().repaint();
 
 							int option = JOptionPane.showConfirmDialog(this, "HAHA, lOSER. Play again?", "Notification",
 									JOptionPane.YES_NO_OPTION);
@@ -78,8 +73,8 @@ public class GamePanel extends JPanel implements MouseListener {
 						} else if (world.isEnd()) {
 
 							getP1().getTime().stop();
-							getP1().getBt().setState(SmileButton.win);
-							getP1().getBt().repaint();
+							getP1().getSmileButton().setState(SmileButton.win);
+							getP1().getSmileButton().repaint();
 
 							int option = JOptionPane.showConfirmDialog(this, "You win, play again ?", "Notification",
 									JOptionPane.YES_NO_OPTION);
@@ -92,28 +87,14 @@ public class GamePanel extends JPanel implements MouseListener {
 				} else if (e.getButton() == 3 && e.getSource() == arrayButton[i][j]) {
 					world.camCo(i, j);
 				}
-				if (e.getClickCount() == 2 && e.getSource() == arrayButton[i][j] && world.getArrayBoolean()[i][j]) {
-					if (!world.clickDouble(i, j)) {
-
-						int option = JOptionPane.showConfirmDialog(this, "HAHA, lOSER. Play again?", "Notification",
-								JOptionPane.YES_NO_OPTION);
-
-						if (option == JOptionPane.YES_OPTION) {
-							gameFrame.setVisible(false);
-							new GameFrame(w, h, boom);
-						} else {
-							world.setFullTrue();
-						}
-					}
-				}
 			}
 		}
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		getP1().getBt().setState(SmileButton.now);
-		getP1().getBt().repaint();
+		getP1().getSmileButton().setState(SmileButton._default);
+		getP1().getSmileButton().repaint();
 	}
 
 	@Override
