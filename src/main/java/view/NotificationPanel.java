@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class PanelNotification extends JPanel {
+public class NotificationPanel extends JPanel {
 
 	/**
 	 * 
@@ -24,12 +24,12 @@ public class PanelNotification extends JPanel {
 
 	private GamePanel game;
 
-	private ButtonSmile bt;
+	private SmileButton bt;
 
 	private Timer time;
 	private int nowTime;
 
-	public PanelNotification(GamePanel game) {
+	public NotificationPanel(GamePanel game) {
 		this.game = game;
 
 		lbTime = game.getWorld().getLbTime();
@@ -58,13 +58,13 @@ public class PanelNotification extends JPanel {
 			}
 		});
 
-		p13.add(bt = new ButtonSmile(this));
+		p13.add(bt = new SmileButton(this));
 
 		bt.addMouseListener(new MouseListener() {
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				bt.setStage(ButtonSmile.now);
+				bt.setState(SmileButton.now);
 				bt.repaint();
 
 				int option = JOptionPane.showConfirmDialog(null, "Are you play new game?", "Notification",
@@ -77,11 +77,11 @@ public class PanelNotification extends JPanel {
 
 			@Override
 			public void mousePressed(MouseEvent e) {
-				if (getGame().getWorld().isEnd() || getGame().getWorld().isComplete()) {
+				if (getGame().getWorld().isEnd() || getGame().getWorld().isLose()) {
 					getGame().getGameFrame().setVisible(false);
 					new GameFrame(game.getW(), game.getH(), game.getBoom());
 				} else {
-					bt.setStage(ButtonSmile.press);
+					bt.setState(SmileButton.press);
 					bt.repaint();
 				}
 			}
@@ -145,11 +145,11 @@ public class PanelNotification extends JPanel {
 		this.time = time;
 	}
 
-	public ButtonSmile getBt() {
+	public SmileButton getBt() {
 		return bt;
 	}
 
-	public void setBt(ButtonSmile bt) {
+	public void setBt(SmileButton bt) {
 		this.bt = bt;
 	}
 

@@ -5,7 +5,7 @@ import java.awt.GridLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
-public class PanelPlayer extends JPanel {
+public class PlayPanel extends JPanel {
 
 	/**
 	 * 
@@ -14,9 +14,9 @@ public class PanelPlayer extends JPanel {
 
 	private GamePanel game;
 
-	private ButtonPlay[][] arrayButton;
+	private PlayButton[][] arrayButton;
 
-	public PanelPlayer(GamePanel game) {
+	public PlayPanel(GamePanel game) {
 		this.game = game;
 
 		setLayout(new GridLayout(game.getW(), game.getH()));
@@ -26,17 +26,17 @@ public class PanelPlayer extends JPanel {
 		setBorder(BorderFactory.createLoweredBevelBorder());
 		for (int i = 0; i < arrayButton.length; i++) {
 			for (int j = 0; j < arrayButton[i].length; j++) {
-				add(arrayButton[i][j] = new ButtonPlay(this));
+				add(arrayButton[i][j] = new PlayButton(this));
 				arrayButton[i][j].addMouseListener(game);
 			}
 		}
 	}
 
-	public ButtonPlay[][] getArrayButton() {
+	public PlayButton[][] getArrayButton() {
 		return arrayButton;
 	}
 
-	public void setArrayButton(ButtonPlay[][] arrayButton) {
+	public void setArrayButton(PlayButton[][] arrayButton) {
 		this.arrayButton = arrayButton;
 	}
 

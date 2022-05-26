@@ -5,7 +5,7 @@ import java.awt.Graphics;
 
 import javax.swing.JButton;
 
-public class ButtonPlay extends JButton {
+public class PlayButton extends JButton {
 
 	/**
 	 * 
@@ -14,9 +14,9 @@ public class ButtonPlay extends JButton {
 
 	private int number;
 
-	private PanelPlayer p;
+	private PlayPanel p;
 
-	public ButtonPlay(PanelPlayer p) {
+	public PlayButton(PlayPanel p) {
 		number = -1;
 		this.p = p;
 		setPreferredSize(new Dimension(30, 30));

@@ -5,7 +5,7 @@ import java.awt.Graphics;
 
 import javax.swing.JButton;
 
-public class ButtonSmile extends JButton {
+public class SmileButton extends JButton {
 
 	/**
 	 * 
@@ -17,20 +17,20 @@ public class ButtonSmile extends JButton {
 	public static final int wow = 3;
 	public static final int now = 4;
 
-	private PanelNotification p;
+	private NotificationPanel p;
 
-	private int stage;
+	private int state;
 
-	public ButtonSmile(PanelNotification p) {
+	public SmileButton(NotificationPanel p) {
 		this.p = p;
 		setPreferredSize(new Dimension(50, 50));
 
-		stage = now;
+		state = now;
 	}
 
 	@Override
 	public void paint(Graphics g) {
-		switch (stage) {
+		switch (state) {
 		case win:
 			g.drawImage(p.getGame().getGameFrame().getLoadData().getListImage().get("smileWin"), 0, 0,
 					getPreferredSize().width, getPreferredSize().height, null);
@@ -58,12 +58,12 @@ public class ButtonSmile extends JButton {
 
 	}
 
-	public int getStage() {
-		return stage;
+	public int getState() {
+		return state;
 	}
 
-	public void setStage(int stage) {
-		this.stage = stage;
+	public void setState(int state) {
+		this.state = state;
 	}
 
 }

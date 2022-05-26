@@ -2,8 +2,8 @@ package control;
 
 import java.util.Random;
 
-import view.ButtonPlay;
-import view.ButtonSmile;
+import view.PlayButton;
+import view.SmileButton;
 import view.GamePanel;
 import view.LableNumber;
 
@@ -11,18 +11,18 @@ public class World {
 
 	private Random rd;
 
-	private ButtonPlay[][] arrayButton;
-	private int[][] arrayMin;// Boom là số -1
+	private PlayButton[][] arrayButton;
+	private int[][] boomArray;
 
 	private boolean[][] arrayBoolean;
 
 	private boolean[][] arrayCamCo;
 	private int co;
 
-	private boolean isComplete;
+	private boolean isLose;
 	private boolean isEnd;
 
-	private ButtonSmile buttonSmile;
+	private SmileButton buttonSmile;
 	private LableNumber lbTime, lbBoom;
 
 	private int boom;
@@ -34,15 +34,15 @@ public class World {
 		this.game = game;
 		this.boom = boom;
 
-		arrayButton = new ButtonPlay[w][h];
-		arrayMin = new int[w][h];
+		arrayButton = new PlayButton[w][h];
+		boomArray = new int[w][h];
 		arrayBoolean = new boolean[w][h];
 		arrayCamCo = new boolean[w][h];
 
 		rd = new Random();
 
-		createArrayMin(boom, w, h);
-		dienSo();
+		createBoomArray(boom, w, h);
+		displayBoomNumber();
 
 	}
 
@@ -52,18 +52,18 @@ public class World {
 
 		for (int l = i - 1; l <= i + 1; l++) {
 			for (int k = j - 1; k <= j + 1; k++) {
-				if (l >= 0 && l <= arrayMin.length - 1 && k >= 0 && k <= arrayMin[i].length - 1) {
+				if (l >= 0 && l <= boomArray.length - 1 && k >= 0 && k <= boomArray[i].length - 1) {
 					if (!arrayCamCo[l][k]) {
-						if (arrayMin[l][k] == -1) {
+						if (boomArray[l][k] == -1) {
 							isCoMin = true;
 							arrayButton[l][k].setNumber(12);
 							arrayButton[l][k].repaint();
 							arrayBoolean[l][k] = true;
 						} else if (!arrayBoolean[l][k]) {
-							if (arrayMin[l][k] == 0) {
+							if (boomArray[l][k] == 0) {
 								open(l, k);
 							} else {
-								arrayButton[l][k].setNumber(arrayMin[l][k]);
+								arrayButton[l][k].setNumber(boomArray[l][k]);
 								arrayButton[l][k].repaint();
 								arrayBoolean[l][k] = true;
 							}
@@ -76,7 +76,7 @@ public class World {
 		if (isCoMin) {
 			for (int j2 = 0; j2 < arrayBoolean.length; j2++) {
 				for (int k = 0; k < arrayBoolean[i].length; k++) {
-					if (arrayMin[j2][k] == -1 && !arrayBoolean[j2][k]) {
+					if (boomArray[j2][k] == -1 && !arrayBoolean[j2][k]) {
 						arrayButton[j2][k].setNumber(10);
 						arrayButton[j2][k].repaint();
 					}
@@ -109,9 +109,9 @@ public class World {
 
 	public boolean open(int i, int j) {
 
-		if (!isComplete && !isEnd) {
+		if (!isLose && !isEnd) {
 			if (!arrayBoolean[i][j]) {
-				if (arrayMin[i][j] == 0) {
+				if (boomArray[i][j] == 0) {
 
 					arrayBoolean[i][j] = true;
 					arrayButton[i][j].setNumber(0);
@@ -125,7 +125,7 @@ public class World {
 
 					for (int l = i - 1; l <= i + 1; l++) {
 						for (int k = j - 1; k <= j + 1; k++) {
-							if (l >= 0 && l <= arrayMin.length - 1 && k >= 0 && k <= arrayMin[i].length - 1) {
+							if (l >= 0 && l <= boomArray.length - 1 && k >= 0 && k <= boomArray[i].length - 1) {
 								if (!arrayBoolean[l][k]) {
 									open(l, k);
 								}
@@ -141,7 +141,7 @@ public class World {
 
 				} else {
 
-					int number = arrayMin[i][j];
+					int number = boomArray[i][j];
 
 					if (number != -1) {
 
@@ -161,14 +161,14 @@ public class World {
 				}
 			}
 
-			if (arrayMin[i][j] == -1) {
+			if (boomArray[i][j] == -1) {
 				arrayButton[i][j].setNumber(11);
 				arrayButton[i][j].repaint();
-				isComplete = true;
+				isLose = true;
 
 				for (int j2 = 0; j2 < arrayBoolean.length; j2++) {
 					for (int k = 0; k < arrayBoolean[i].length; k++) {
-						if (arrayMin[j2][k] == -1 && !arrayBoolean[j2][k]) {
+						if (boomArray[j2][k] == -1 && !arrayBoolean[j2][k]) {
 							if (j2 != i || k != j) {
 								arrayButton[j2][k].setNumber(10);
 								arrayButton[j2][k].repaint();
@@ -209,51 +209,39 @@ public class World {
 			return false;
 	}
 
-	public void dienSo() {
-		for (int i = 0; i < arrayMin.length; i++) {
-			for (int j = 0; j < arrayMin[i].length; j++) {
-				if (arrayMin[i][j] == 0) {
+	public void displayBoomNumber() {
+		for (int i = 0; i < boomArray.length; i++) {
+			for (int j = 0; j < boomArray[i].length; j++) {
+				if (boomArray[i][j] == 0) {
 					int count = 0;
 					for (int l = i - 1; l <= i + 1; l++) {
 						for (int k = j - 1; k <= j + 1; k++) {
-							if (l >= 0 && l <= arrayMin.length - 1 && k >= 0 && k <= arrayMin[i].length - 1)
-								if (arrayMin[l][k] == -1) {
+							if (l >= 0 && l <= boomArray.length - 1 && k >= 0 && k <= boomArray[i].length - 1)
+								if (boomArray[l][k] == -1) {
 									count++;
 								}
 						}
 					}
-					arrayMin[i][j] = count;
+					boomArray[i][j] = count;
 				}
 			}
 		}
 	}
 
-	public void createArrayMin(int boom, int w, int h) {
-		int locationX = rd.nextInt(w);
-		int locationY = rd.nextInt(h);
-
-		arrayMin[locationX][locationY] = -1;
-		int count = 1;
+	public void createBoomArray(int boom, int w, int h) {
+		int count = 0;
 		while (count != boom) {
-			locationX = rd.nextInt(w);
-			locationY = rd.nextInt(h);
-			if (arrayMin[locationX][locationY] != -1) {
-
-				arrayMin[locationX][locationY] = -1;
-
-				count = 0;
-				for (int i = 0; i < arrayMin.length; i++) {
-					for (int j = 0; j < arrayMin[i].length; j++) {
-						if (arrayMin[i][j] == -1)
+			int positionX = rd.nextInt(w);
+			int positionY = rd.nextInt(h);
+			if (boomArray[positionX][positionY] != -1) {
+				boomArray[positionX][positionY] = -1;
 							count++;
-					}
-				}
 			}
 		}
 
 	}
 
-	public void fullTrue() {
+	public void setFullTrue() {
 		for (int i = 0; i < arrayBoolean.length; i++) {
 			for (int j = 0; j < arrayBoolean[i].length; j++) {
 				if (!arrayBoolean[i][j]) {
@@ -263,19 +251,19 @@ public class World {
 		}
 	}
 
-	public ButtonPlay[][] getArrayButton() {
+	public PlayButton[][] getArrayButton() {
 		return arrayButton;
 	}
 
-	public void setArrayButton(ButtonPlay[][] arrayButton) {
+	public void setArrayButton(PlayButton[][] arrayButton) {
 		this.arrayButton = arrayButton;
 	}
 
-	public ButtonSmile getButtonSmile() {
+	public SmileButton getButtonSmile() {
 		return buttonSmile;
 	}
 
-	public void setButtonSmile(ButtonSmile buttonSmile) {
+	public void setButtonSmile(SmileButton buttonSmile) {
 		this.buttonSmile = buttonSmile;
 	}
 
@@ -303,12 +291,12 @@ public class World {
 		this.arrayBoolean = arrayBoolean;
 	}
 
-	public boolean isComplete() {
-		return isComplete;
+	public boolean isLose() {
+		return isLose;
 	}
 
-	public void setComplete(boolean isComplete) {
-		this.isComplete = isComplete;
+	public void setLose(boolean isLose) {
+		this.isLose = isLose;
 	}
 
 	public boolean isEnd() {

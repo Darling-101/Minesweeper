@@ -12,11 +12,11 @@ public class LableNumber extends JLabel {
 	*/
 	private static final long serialVersionUID = 1L;
 
-	private PanelNotification p;
+	private NotificationPanel p;
 
 	private String number;
 
-	public LableNumber(PanelNotification p, String number) {
+	public LableNumber(NotificationPanel p, String number) {
 		this.p = p;
 		this.number = number;
 		setPreferredSize(new Dimension(78, 46));
@@ -38,11 +38,11 @@ public class LableNumber extends JLabel {
 		}
 	}
 
-	public PanelNotification getP() {
+	public NotificationPanel getP() {
 		return p;
 	}
 
-	public void setP(PanelNotification p) {
+	public void setP(NotificationPanel p) {
 		this.p = p;
 	}
 

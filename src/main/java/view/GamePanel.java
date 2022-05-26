@@ -15,8 +15,8 @@ public class GamePanel extends JPanel implements MouseListener {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private PanelNotification p1;
-	private PanelPlayer p2;
+	private NotificationPanel p1;
+	private PlayPanel p2;
 
 	private GameFrame gameFrame;
 
@@ -38,8 +38,8 @@ public class GamePanel extends JPanel implements MouseListener {
 
 		setLayout(new BorderLayout(20, 20));
 
-		add(p1 = new PanelNotification(this), BorderLayout.NORTH);
-		add(p2 = new PanelPlayer(this), BorderLayout.CENTER);
+		add(p1 = new NotificationPanel(this), BorderLayout.NORTH);
+		add(p2 = new PlayPanel(this), BorderLayout.CENTER);
 	}
 
 	@Override
@@ -48,9 +48,9 @@ public class GamePanel extends JPanel implements MouseListener {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		getP1().getBt().setStage(ButtonSmile.wow);
+		getP1().getBt().setState(SmileButton.wow);
 		getP1().getBt().repaint();
-		ButtonPlay[][] arrayButton = p2.getArrayButton();
+		PlayButton[][] arrayButton = p2.getArrayButton();
 		for (int i = 0; i < arrayButton.length; i++) {
 			for (int j = 0; j < arrayButton[i].length; j++) {
 				if (e.getButton() == 1 && e.getSource() == arrayButton[i][j] && !world.getArrayCamCo()[i][j]) {
@@ -61,24 +61,24 @@ public class GamePanel extends JPanel implements MouseListener {
 
 					if (!world.open(i, j)) {
 
-						if (world.isComplete()) {
+						if (world.isLose()) {
 
 							getP1().getTime().stop();
-							getP1().getBt().setStage(ButtonSmile.lose);
+							getP1().getBt().setState(SmileButton.lose);
 							getP1().getBt().repaint();
 
-							int option = JOptionPane.showConfirmDialog(this, "You lost, play again?", "Notification",
+							int option = JOptionPane.showConfirmDialog(this, "HAHA, lOSER. Play again?", "Notification",
 									JOptionPane.YES_NO_OPTION);
 							if (option == JOptionPane.YES_OPTION) {
 								gameFrame.setVisible(false);
 								new GameFrame(w, h, boom);
 							} else {
-								world.fullTrue();
+								world.setFullTrue();
 							}
 						} else if (world.isEnd()) {
 
 							getP1().getTime().stop();
-							getP1().getBt().setStage(ButtonSmile.win);
+							getP1().getBt().setState(SmileButton.win);
 							getP1().getBt().repaint();
 
 							int option = JOptionPane.showConfirmDialog(this, "You win, play again ?", "Notification",
@@ -95,14 +95,14 @@ public class GamePanel extends JPanel implements MouseListener {
 				if (e.getClickCount() == 2 && e.getSource() == arrayButton[i][j] && world.getArrayBoolean()[i][j]) {
 					if (!world.clickDouble(i, j)) {
 
-						int option = JOptionPane.showConfirmDialog(this, "You lost, play again?", "Notification",
+						int option = JOptionPane.showConfirmDialog(this, "HAHA, lOSER. Play again?", "Notification",
 								JOptionPane.YES_NO_OPTION);
 
 						if (option == JOptionPane.YES_OPTION) {
 							gameFrame.setVisible(false);
 							new GameFrame(w, h, boom);
 						} else {
-							world.fullTrue();
+							world.setFullTrue();
 						}
 					}
 				}
@@ -112,7 +112,7 @@ public class GamePanel extends JPanel implements MouseListener {
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		getP1().getBt().setStage(ButtonSmile.now);
+		getP1().getBt().setState(SmileButton.now);
 		getP1().getBt().repaint();
 	}
 
@@ -164,19 +164,19 @@ public class GamePanel extends JPanel implements MouseListener {
 		this.boom = boom;
 	}
 
-	public PanelNotification getP1() {
+	public NotificationPanel getP1() {
 		return p1;
 	}
 
-	public void setP1(PanelNotification p1) {
+	public void setP1(NotificationPanel p1) {
 		this.p1 = p1;
 	}
 
-	public PanelPlayer getP2() {
+	public PlayPanel getP2() {
 		return p2;
 	}
 
-	public void setP2(PanelPlayer p2) {
+	public void setP2(PlayPanel p2) {
 		this.p2 = p2;
 	}
 }
