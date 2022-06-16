@@ -15,7 +15,7 @@ public class NotificationPanel extends JPanel {
 
 	private JPanel p11, p12, p13;
 
-	private LabelNumber lbTime, lbBoom;
+	private NumberLabel lbTime, lbBoom;
 
 	private GamePanel game;
 
@@ -39,10 +39,10 @@ public class NotificationPanel extends JPanel {
 		add(p12 = new JPanel(), BorderLayout.EAST);
 		add(p13 = new JPanel(), BorderLayout.CENTER);
 
-		p11.add(lbBoom = new LabelNumber(this, "000"));
+		p11.add(lbBoom = new NumberLabel(this, "000"));
 		updateLbBoom();
 
-		p12.add(lbTime = new LabelNumber(this, "000"));
+		p12.add(lbTime = new NumberLabel(this, "000"));
 
 		time = new Timer(1000, new ActionListener() {
 			@Override

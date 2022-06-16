@@ -5,7 +5,7 @@ import java.util.Random;
 import view.PlayButton;
 import view.SmileButton;
 import view.GamePanel;
-import view.LabelNumber;
+import view.NumberLabel;
 
 public class World {
 
@@ -23,7 +23,7 @@ public class World {
 	private boolean isEnd;
 
 	private SmileButton buttonSmile;
-	private LabelNumber lbTime, lbBoom;
+	private NumberLabel lbTime, lbBoom;
 
 	private int boom;
 
@@ -222,19 +222,19 @@ public class World {
 		this.buttonSmile = buttonSmile;
 	}
 
-	public LabelNumber getLbTime() {
+	public NumberLabel getLbTime() {
 		return lbTime;
 	}
 
-	public void setLbTime(LabelNumber lbTime) {
+	public void setLbTime(NumberLabel lbTime) {
 		this.lbTime = lbTime;
 	}
 
-	public LabelNumber getLbBoom() {
+	public NumberLabel getLbBoom() {
 		return lbBoom;
 	}
 
-	public void setLbBoom(LabelNumber lbBoom) {
+	public void setLbBoom(NumberLabel lbBoom) {
 		this.lbBoom = lbBoom;
 	}
 

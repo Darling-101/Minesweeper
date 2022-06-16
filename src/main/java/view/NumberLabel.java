@@ -5,13 +5,13 @@ import java.awt.Graphics;
 
 import javax.swing.JLabel;
 
-public class LabelNumber extends JLabel {
+public class NumberLabel extends JLabel {
 
 	private NotificationPanel p;
 
 	private String number;
 
-	public LabelNumber(NotificationPanel p, String number) {
+	public NumberLabel(NotificationPanel p, String number) {
 		this.p = p;
 		this.number = number;
 		setPreferredSize(new Dimension(78, 46));
